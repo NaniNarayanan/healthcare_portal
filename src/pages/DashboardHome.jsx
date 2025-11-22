@@ -1,19 +1,7 @@
-export default function DashboardHome() {
-  const patient = {
-    name: "David",
-    goals: {
-      steps: 3620,
-      targetSteps: 6000,
-      activeTime: "56 / 60 mins",
-      calories: "1712 Kcal",
-      distance: "1.23 km",
-      sleep: "6 hr 30 mins",
-      sleepTime: "11:30 pm – 06:00 am",
-    },
-    reminder: "Annual blood test on 23rd Jan 2025",
-    tip: "Stay hydrated! Aim to drink at least 8 glasses of water per day.",
-  };
+import patients from "../data/patients.json";
 
+export default function DashboardHome() {
+  const patient = patients[0]; // Simulate logged-in user
   const progressPercent = Math.round((patient.goals.steps / patient.goals.targetSteps) * 100);
 
   return (
