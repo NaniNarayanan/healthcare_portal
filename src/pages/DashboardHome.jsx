@@ -24,6 +24,17 @@ export default function DashboardHome() {
           end={patient.goals.sleepEnd}
         />
       </div>
+            {/* Preventive Care Reminder */}
+      <div className="bg-white p-4 rounded shadow">
+        <h2 className="font-semibold mb-2">Preventive Care Reminder</h2>
+        <p>Upcoming: {patient.reminder}</p>
+      </div>
+
+      {/* Health Tip */}
+      <div className="bg-white p-4 rounded shadow">
+        <h2 className="font-semibold mb-2">Health Tip of the Day</h2>
+        <p>{patient.tip}</p>
+      </div>
     </div>
   );
 }
