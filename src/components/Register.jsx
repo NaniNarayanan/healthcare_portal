@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ErrorMessage from "./shared/ErroMessage";
 
 const Register = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -107,7 +108,7 @@ const Register = () => {
 
           {/* Name */}
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Name</label>
+            <label className="block mb-1 font-semibold">Name <span className="text-red-600">*</span></label> 
             <input
               type="text"
               name="name"
@@ -118,14 +119,16 @@ const Register = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.name && formik.errors.name && (
+            {
+            <ErrorMessage error={formik.touched.name && formik.errors.name} />
+            /* {formik.touched.name && formik.errors.name && (
               <p className="text-red-600 text-sm mt-1">{formik.errors.name}</p>
-            )}
+            )} */}
           </div>
 
           {/* Age */}
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Age</label>
+            <label className="block mb-1 font-semibold">Age <span className="text-red-600">*</span></label>
             <input
               type="number"
               name="age"
@@ -136,14 +139,14 @@ const Register = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.age && formik.errors.age && (
-              <p className="text-red-600 text-sm mt-1">{formik.errors.age}</p>
-            )}
+            {
+              <ErrorMessage error={formik.touched.age && formik.errors.age} />
+           }
           </div>
 
           {/* Gender */}
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Gender</label>
+            <label className="block mb-1 font-semibold">Gender <span className="text-red-600">*</span></label>
             <select
               name="gender"
               className={`w-full border p-2 rounded ${
@@ -158,14 +161,12 @@ const Register = () => {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-            {formik.touched.gender && formik.errors.gender && (
-              <p className="text-red-600 text-sm mt-1">{formik.errors.gender}</p>
-            )}
+            {<ErrorMessage error={formik.touched.gender && formik.errors.gender} />}
           </div>
 
           {/* Role */}
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Role</label>
+            <label className="block mb-1 font-semibold">Role <span className="text-red-600">*</span></label>
             <select
               name="role"
               className={`w-full border p-2 rounded ${
@@ -179,9 +180,7 @@ const Register = () => {
               <option value="patient">Patient</option>
               <option value="provider">Provider</option>
             </select>
-            {formik.touched.role && formik.errors.role && (
-              <p className="text-red-600 text-sm mt-1">{formik.errors.role}</p>
-            )}
+            {<ErrorMessage error={formik.touched.role && formik.errors.role} />}
           </div>
 
           {/* Provider Fields */}
@@ -202,6 +201,8 @@ const Register = () => {
                       : field === "affiliation"
                       ? "Hospital/Clinic Affiliation"
                       : "Years of Experience"}
+                    
+                    <span className="text-red-600">*</span>
                   </label>
                   <input
                     type={field === "experience" ? "number" : "text"}
@@ -215,9 +216,7 @@ const Register = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                  {formik.touched[field] && formik.errors[field] && (
-                    <p className="text-red-600 text-sm mt-1">{formik.errors[field]}</p>
-                  )}
+                  {<ErrorMessage error={formik.touched[field] && formik.errors[field]} />}
                 </div>
               ))}
 
@@ -240,7 +239,7 @@ const Register = () => {
 
           {/* Email */}
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Email</label>
+            <label className="block mb-1 font-semibold">Email <span className="text-red-600">*</span></label>
             <input
               type="email"
               name="email"
@@ -251,14 +250,15 @@ const Register = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
             />
-            {formik.touched.email && formik.errors.email && (
-              <p className="text-red-600 text-sm mt-1">{formik.errors.email}</p>
-            )}
+           
+            {  
+              <ErrorMessage error={formik.touched.email && formik.errors.email} />
+            }
           </div>
 
           {/* Password */}
           <div className="mb-6">
-            <label className="block mb-1 font-semibold">Password</label>
+            <label className="block mb-1 font-semibold">Password <span className="text-red-600">*</span></label>
             <input
               type="password"
               name="password"
