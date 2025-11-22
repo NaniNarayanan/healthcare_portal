@@ -4,6 +4,7 @@ import patients from "../data/patients.json";
 import StepsCard from "../components/StepCard";
 import ActiveTimeCard from "../components/TimeCard";
 import SleepCard from "../components/SleepCard";
+import BreadCrumbs from "../reusecomponent/BreadCrump";
 export default function DashboardHome() {
   const patient = patients[0]; // Simulate logged-in user
   const role = "patient"; //patient or provider
@@ -12,14 +13,21 @@ export default function DashboardHome() {
          {role === "provider" ? (
            <ProviderDashboard />
          ) : (
-        <div className="space-y-6">
+          <>
+              <BreadCrumbs
+              crumbs={["Dashboard", "Dashboard"]}
+              paths={["/dashboard", "/dashboard"]}
+              selected={(crumb) => console.log("hello", crumb)}
+              />
+
+                      <div className="space-y-6">
           <h1 className="text-2xl font-bold">Welcome, {patient.name}</h1>
 
           {/* Wellness Goals */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <StepsCard steps={patient.goals.steps} goal={patient.goals.targetSteps} />
         <ActiveTimeCard mins={patient.goals.time} target={patient.goals.activeTime} kcal={patient.goals.calories} dist={patient.goals.distance} />
-        <SleepCard start={patient.goals.sleepStart} end={patient.goals.sleepEnd} />
+        <SleepCard start={patient.goals.sleepInTime} end={patient.goals.sleepOutTime} />
 
           </div>
 
@@ -35,7 +43,9 @@ export default function DashboardHome() {
             <p>{patient.tip}</p>
           </div>
         </div>
-         )};
+          </>
+
+         )}
     </div>
   );
 }

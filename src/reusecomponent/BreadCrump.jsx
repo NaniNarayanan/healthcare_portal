@@ -8,7 +8,7 @@ export default function BreadCrumbs(props) {
   }
 
   return (
-    <nav className="flex justify-center mt-4">
+    <nav className="flex justify-start mt-4">
       <ol className="flex items-center space-x-2">
         {props.crumbs?.map((crumb, ci) => {
           const disabled = isLast(ci);
