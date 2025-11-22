@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import patientsData from "../data/provider-patients.json";
+import patientsData from "../data/patients.json";
 
 const ProviderDashboard = () => {
   const [patients, setPatients] = useState([]);
@@ -15,10 +15,11 @@ const ProviderDashboard = () => {
     setPatients(assignedPatients);
   }, [loggedInProviderUsername]);
 
-  const openModal = (patient) => {
+  const handleOpenModal = React.useCallback((patient) => {
     setSelectedPatient(patient);
     setIsModalOpen(true);
-  };
+  }, []);
+
 
   const closeModal = () => {
     setSelectedPatient(null);
@@ -43,10 +44,10 @@ const ProviderDashboard = () => {
               <tr
                 key={patient.id}
                 className="border-b hover:bg-gray-100 cursor-pointer"
-                onClick={() => openModal(patient)}
+                onClick={() => handleOpenModal(patient)}
               >
-                <td className="p-3">{patient.name}</td>
-                <td className="p-3">{patient.age}</td>
+                <td className="p-3">{patient.profile.name}</td>
+                <td className="p-3">{patient.profile.age}</td>
                 <td className="p-3">
                   <span
                     className={`px-3 py-1 rounded-full text-white text-sm font-semibold ${
@@ -74,11 +75,11 @@ const ProviderDashboard = () => {
             </button>
 
             <h2 className="text-2xl font-bold mb-4 text-blue-700">
-              {selectedPatient.name}'s Goals
+              {selectedPatient.profile.name}'s Goals
             </h2>
 
             <div>
-              {selectedPatient.goals.map((goal, idx) => (
+              {selectedPatient.recommendedGoals.map((goal, idx) => (
                 <div
                   key={idx}
                   className="flex justify-between items-center border-b py-2"

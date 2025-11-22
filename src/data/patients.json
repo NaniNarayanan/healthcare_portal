@@ -1,7 +1,18 @@
 [
   {
     "id": 1,
-    "name": "David",
+    "profile": {
+      "name": "Narayanan",
+      "age": "26",
+      "dob": "1999-10-10",
+      "gender": "Male",
+      "height": "170",
+      "weight": "65",
+      "email": "narayanan@example.com",
+      "mobile": "9876543210",
+      "address": "Chennai, India",
+      "provider": "Raja M"
+    },
     "goals": {
       "steps": 3920,
       "targetSteps": 6000,
@@ -13,6 +24,309 @@
       "sleepEnd": "05:00 am"
     },
     "reminder": "Annual blood test on 23rd Jan 2026",
-    "tip": "Stay hydrated! Aim to drink at least 8 glasses of water per day."
+    "tip": "Stay hydrated! Aim to drink at least 8 glasses of water per day.",
+    "compliance": "Goal Met",
+      "username": "provider1",
+      "recommendedGoals": [
+        { "name": "Blood Pressure Check", "status": "Goal Met" },
+        { "name": "Annual Physical Exam", "status": "Missed Preventive Checkup" }
+      ]
+  },
+  {
+    "id": 2,
+    "profile": {
+      "name": "Sanjay",
+      "age": "32",
+      "dob": "1993-05-14",
+      "gender": "Male",
+      "height": "168",
+      "weight": "72",
+      "email": "sanjay@example.com",
+      "mobile": "9876500011",
+      "address": "Coimbatore, India",
+      "provider": "Dr. Priya"
+    },
+    "goals": {
+      "steps": 4580,
+      "targetSteps": 7000,
+      "activeTime": "42 / 60 mins",
+      "calories": "1503 Kcal",
+      "distance": "2.03 km",
+      "sleep": "",
+      "sleepInTime": "10:45 pm",
+      "sleepOutTime": "06:00 am"
+    },
+    "reminder": "Dental checkup on 10th Feb 2026",
+    "tip": "Include more fruits and vegetables in your diet.",
+     "compliance": "Missed Preventive Checkup",
+      "username": "provider1",
+      "recommendedGoals": [
+        { "name": "Cholesterol Test", "status": "Missed Preventive Checkup" },
+        { "name": "Flu Vaccination", "status": "Goal Met" }
+      ]
+  },
+  {
+    "id": 3,
+    "profile": {
+      "name": "Kavya",
+      "age": "28",
+      "dob": "1996-09-02",
+      "gender": "Female",
+      "height": "160",
+      "weight": "58",
+      "email": "kavya@example.com",
+      "mobile": "9003412288",
+      "address": "Hyderabad, India",
+      "provider": "Dr. Meera"
+    },
+    "goals": {
+      "steps": 5120,
+      "targetSteps": 8000,
+      "activeTime": "60 / 60 mins",
+      "calories": "1900 Kcal",
+      "distance": "3.2 km",
+      "sleep": "",
+      "sleepInTime": "11:00 pm",
+      "sleepOutTime": "07:45 am"
+    },
+    "reminder": "Full body checkup on 5th March 2026",
+    "tip": "Yoga for 20 minutes can boost your mental clarity.",
+    "compliance": "Goal Met",
+    "username": "provider1",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 4,
+    "profile": {
+      "name": "Vikram",
+      "age": "35",
+      "dob": "1990-12-10",
+      "gender": "Male",
+      "height": "175",
+      "weight": "78",
+      "email": "vikram@example.com",
+      "mobile": "9898989822",
+      "address": "Bangalore, India",
+      "provider": "Dr. Anand"
+    },
+    "goals": {
+      "steps": 3000,
+      "targetSteps": 6000,
+      "activeTime": "30 / 60 mins",
+      "calories": "1600 Kcal",
+      "distance": "1.1 km",
+      "sleep": "",
+      "sleepInTime": "12:15 am",
+      "sleepOutTime": "08:30 am"
+    },
+    "reminder": "Eye checkup on 20th Feb 2026",
+    "tip": "Reduce screen time before sleep for better rest.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 5,
+    "profile": {
+      "name": "Divya",
+      "age": "30",
+      "dob": "1994-03-20",
+      "gender": "Female",
+      "height": "158",
+      "weight": "62",
+      "email": "divya@example.com",
+      "mobile": "9001234567",
+      "address": "Mumbai, India",
+      "provider": "Dr.Lakshmi"
+    },
+    "goals": {
+      "steps": 6800,
+      "targetSteps": 9000,
+      "activeTime": "70 / 60 mins",
+      "calories": "2005 Kcal",
+      "distance": "4.1 km",
+      "sleep": "",
+      "sleepInTime": "10:30 pm",
+      "sleepOutTime": "07:20 am"
+    },
+    "reminder": "Thyroid test on 1st April 2026",
+    "tip": "Practice mindful breathing for stress relief.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 6,
+    "profile": {
+      "name": "Arjun",
+      "age": "29",
+      "dob": "1995-01-15",
+      "gender": "Male",
+      "height": "172",
+      "weight": "75",
+      "email": "arjun@example.com",
+      "mobile": "8812345670",
+      "address": "Pune, India",
+      "provider": "Dr. Vikash"
+    },
+    "goals": {
+      "steps": 2300,
+      "targetSteps": 5000,
+      "activeTime": "20 / 60 mins",
+      "calories": "1200 Kcal",
+      "distance": "0.9 km",
+      "sleep": "",
+      "sleepInTime": "01:00 am",
+      "sleepOutTime": "06:30 am"
+    },
+    "reminder": "Cardio profile on 11th March 2026",
+    "tip": "Try taking a 10-minute walk after meals.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 7,
+    "profile": {
+      "name": "Meenakshi",
+      "age": "27",
+      "dob": "1997-08-25",
+      "gender": "Female",
+      "height": "162",
+      "weight": "55",
+      "email": "meenakshi@example.com",
+      "mobile": "7700123456",
+      "address": "Chennai, India",
+      "provider": "Dr. Rajalakshmi"
+    },
+    "goals": {
+      "steps": 7000,
+      "targetSteps": 9000,
+      "activeTime": "55 / 60 mins",
+      "calories": "1850 Kcal",
+      "distance": "4.0 km",
+      "sleep": "",
+      "sleepInTime": "11:10 pm",
+      "sleepOutTime": "06:25 am"
+    },
+    "reminder": "Vitamin D test on 14th May 2026",
+    "tip": "Stretching for 5 minutes improves posture.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 8,
+    "profile": {
+      "name": "Suresh",
+      "age": "40",
+      "dob": "1984-04-22",
+      "gender": "Male",
+      "height": "178",
+      "weight": "82",
+      "email": "suresh@example.com",
+      "mobile": "9944332211",
+      "address": "Madurai, India",
+      "provider": "Dr. Manoj"
+    },
+    "goals": {
+      "steps": 3500,
+      "targetSteps": 5500,
+      "activeTime": "33 / 60 mins",
+      "calories": "1450 Kcal",
+      "distance": "1.5 km",
+      "sleep": "",
+      "sleepInTime": "12:00 am",
+      "sleepOutTime": "06:10 am"
+    },
+    "reminder": "Cholesterol test on 18th Feb 2026",
+    "tip": "Drink water first thing in the morning.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 9,
+    "profile": {
+      "name": "Anitha",
+      "age": "24",
+      "dob": "2000-02-11",
+      "gender": "Female",
+      "height": "155",
+      "weight": "52",
+      "email": "anitha@example.com",
+      "mobile": "9090909090",
+      "address": "Trichy, India",
+      "provider": "Dr. Revathi"
+    },
+    "goals": {
+      "steps": 8000,
+      "targetSteps": 10000,
+      "activeTime": "78 / 60 mins",
+      "calories": "2200 Kcal",
+      "distance": "5.2 km",
+      "sleep": "",
+      "sleepInTime": "10:00 pm",
+      "sleepOutTime": "09:00 am"
+    },
+    "reminder": "Skin screening on 2nd June 2026",
+    "tip": "Start your day with 5 minutes of meditation.",
+    "compliance": "Missed Preventive Checkup",
+    "username": "provider1",
+    "recommendedGoals": [
+      { "name": "Flu Vaccination", "status": "Missed Preventive Checkup" },
+      { "name": "Cholesterol Test", "status": "Goal Met" }
+    ]
+  },
+  {
+    "id": 10,
+    "profile": {
+      "name": "Prakash",
+      "age": "38",
+      "dob": "1986-06-30",
+      "gender": "Male",
+      "height": "169",
+      "weight": "74",
+      "email": "prakash@example.com",
+      "mobile": "9445566778",
+      "address": "Salem, India",
+      "provider": "Dr. Babu"
+    },
+    "goals": {
+      "steps": 4100,
+      "targetSteps": 6500,
+      "activeTime": "48 / 60 mins",
+      "calories": "1700 Kcal",
+      "distance": "1.8 km",
+      "sleep": "",
+      "sleepInTime": "11:45 pm",
+      "sleepOutTime": "05:30 am"
+    },
+    "reminder": "Blood pressure check on 12th March 2026",
+    "tip": "Limit sugar intake for better energy levels.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   }
 ]
