@@ -1,5 +1,7 @@
 import patients from "../data/patients.json";
-
+import StepsCard from "../components/StepCard";
+import ActiveTimeCard from "../components/TimeCard";
+import SleepCard from "../components/SleepCard";
 export default function DashboardHome() {
   const patient = patients[0]; // Simulate logged-in user
   const progressPercent = Math.round((patient.goals.steps / patient.goals.targetSteps) * 100);
@@ -10,32 +12,10 @@ export default function DashboardHome() {
 
       {/* Wellness Goals */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Steps */}
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-semibold mb-2">Steps</h2>
-          <p>{patient.goals.steps} / {patient.goals.targetSteps} steps</p>
-          <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-            <div
-              className="bg-blue-600 h-2 rounded-full"
-              style={{ width: `${progressPercent}%` }}
-            ></div>
-          </div>
-          <p className="text-sm mt-1">{progressPercent}%</p>
-        </div>
+       <StepsCard steps={3620} goal={6000} />
+    <ActiveTimeCard mins={56} target={60} kcal={1712} dist={"1.23km"} />
+     <SleepCard hours={6} mins={30} start="11:30 pm" end="06:00 am" />
 
-        {/* Active Time */}
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-semibold mb-2">Active Time</h2>
-          <p>{patient.goals.activeTime}</p>
-          <p className="text-sm text-gray-600">{patient.goals.calories} | {patient.goals.distance}</p>
-        </div>
-
-        {/* Sleep */}
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-semibold mb-2">Sleep</h2>
-          <p>{patient.goals.sleep}</p>
-          <p className="text-sm text-gray-600">{patient.goals.sleepTime}</p>
-        </div>
       </div>
 
       {/* Preventive Care Reminder */}
