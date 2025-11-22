@@ -1,18 +1,19 @@
-import { useState } from "react";
-import patients from "../data/patients.json";
 import WellnessLogger from "../components/WellnessLogger";
+import { usePatient } from "../context/PatientContext";
 
 export default function Goals() {
-  const [patient, setPatient] = useState(patients[0]);
+  const { patient, setPatient } = usePatient();
 
-  const handleLog = ({ steps, activeTime, sleep }) => {
+  const handleLog = ({ steps, activeTime, sleep, sleepStart, sleepEnd }) => {
     setPatient((prev) => ({
       ...prev,
       goals: {
         ...prev.goals,
         steps: parseInt(steps),
-        activeTime: `${activeTime} / 60 mins`,
+        activeTime: parseInt(activeTime),
         sleep,
+        sleepStart,
+        sleepEnd,
       },
     }));
   };
@@ -20,8 +21,6 @@ export default function Goals() {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Wellness Goals</h1>
-
-      {/* Input Form */}
       <WellnessLogger onSubmit={handleLog} />
     </div>
   );

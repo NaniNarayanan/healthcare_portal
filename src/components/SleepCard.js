@@ -1,43 +1,43 @@
 import React from "react";
 import Card from "./Cards";
 
-
+// Converts "23:00" or "07:30" to minutes since midnight
 function parseTimeToMinutes(t) {
   if (!t || typeof t !== "string") return null;
-  const m = t.trim().toLowerCase();
-  const re = /^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/;
-  const match = m.match(re);
-  if (!match) return null;
-  let hour = parseInt(match[1], 10);
-  const minute = parseInt(match[2] || "0", 10);
-  const period = match[3]; // am or pm
-  if (hour === 12) hour = 0; // 12am -> 0, 12pm handled below
-  if (period === "pm") hour += 12;
+  const [hourStr, minStr] = t.split(":");
+  const hour = parseInt(hourStr, 10);
+  const minute = parseInt(minStr || "0", 10);
+  if (isNaN(hour) || isNaN(minute)) return null;
   return hour * 60 + minute;
 }
 
-// compute difference in hours/minutes, handling overnight spans
+// Computes duration between start and end, handling overnight spans
 function durationBetween(startStr, endStr) {
   const start = parseTimeToMinutes(startStr);
   const end = parseTimeToMinutes(endStr);
   if (start === null || end === null) return { hours: 0, mins: 0 };
-  const totalMinutes = (end - start + 24 * 60) % (24 * 60);
-  // if same time treat as 24h
-  const minutes = totalMinutes === 0 ? 24 * 60 : totalMinutes;
+  const totalMinutes = (end - start + 1440) % 1440;
+  const minutes = totalMinutes === 0 ? 1440 : totalMinutes;
   return { hours: Math.floor(minutes / 60), mins: minutes % 60 };
 }
+
 const SleepBar = ({ segments = ["#49d199", "#ffcd3c", "#f08aa6", "#6aa8ff"] }) => (
   <div className="flex items-center space-x-1">
     {segments.map((c, i) => (
-      <div key={i} style={{ background: c }} className={`h-3 rounded-full ${i === 0 ? "w-8" : "w-4"}`} />
+      <div
+        key={i}
+        style={{ background: c }}
+        className={`h-3 rounded-full ${i === 0 ? "w-8" : "w-4"}`}
+      />
     ))}
   </div>
 );
 
-export default function SleepCard({start, end }) {
-    const computed = durationBetween(start, end);
-const displayHours = computed.hours;
-  const displayMins = computed.mins;
+export default function SleepCard({ start, end, goal = 8 }) {
+  const { hours, mins } = durationBetween(start, end);
+  const totalHours = hours + mins / 60;
+  const pct = Math.min(100, Math.round((totalHours / goal) * 100));
+
   return (
     <Card
       icon={
@@ -49,7 +49,27 @@ const displayHours = computed.hours;
       subtitle={`${start} - ${end}`}
       right={<SleepBar />}
     >
-      <div className="text-2xl font-semibold text-gray-900">{displayHours} hrs {displayMins} mins</div>
+      <div
+        className="relative h-10 bg-gray-100 rounded-full overflow-hidden border border-gray-200"
+        role="progressbar"
+        aria-valuenow={pct}
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <div
+          className="absolute left-0 top-0 bottom-0 bg-blue-400 transition-all duration-500 ease-out"
+          style={{ width: `${pct}%` }}
+        />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span
+            className={`text-sm font-semibold select-none ${
+              pct > 15 ? "text-white" : "text-gray-700"
+            }`}
+          >
+            {hours} hrs {mins} mins ({pct}% of goal)
+          </span>
+        </div>
+      </div>
     </Card>
   );
 }
