@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardLayout />}>
           <Route path="dashboard" element={<DashboardHome />} />
-          <Route path="profile" element={<ProfileInformation />} />
+          <Route path="/profile/:id" element={<ProfileInformation />} />
           <Route path="goals" element={<Goals />} />
           <Route path="messages" element={<Messages />} />
           <Route path="logout" element={<Logout />} />

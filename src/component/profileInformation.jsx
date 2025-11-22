@@ -1,26 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegexInput from "../reusecomponent/regexInput";
 import Toast from "../reusecomponent/toastMessage";
 import ConfirmModal from "../reusecomponent/confirmPopModal";
 import PatientData from "../data/patients.json"
+import { useParams } from "react-router-dom";
 
 export default function ProfileInformation() {
   const [editMode, setEditMode] = useState(false);
   const [ toast, setToast ] = useState({show:false, message:"", type:""});
   const [ showModal, setShowModal ] = useState(false);
+  const { id } = useParams();
+  const selectedUserId = Number(id);
 
-  const [formData, setFormData] = useState({
-    name: "Narayanan",
-    age: "26",
-    dob: "1999-10-10",
-    gender: "Male",
-    height: "170",
-    weight: "65",
-    email: "narayanan@example.com",
-    mobile: "9876543210",
-    address: "Chennai, India",
-    provider: "Raja M"
-  });
+ useEffect(() => {
+  const selected = PatientData.find((u) => u.id === selectedUserId);
+
+  if (selected) {
+    setFormData({
+      ...selected.profile,
+      provider: selected.profile.provider, // already string OK
+    });
+  }
+ }, [selectedUserId]);
+
+
+  const [formData, setFormData] = useState({});
+
+
 
   const [errors, setErrors] = useState({});
 
@@ -34,7 +40,8 @@ export default function ProfileInformation() {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     mobile: /^[0-9]{10}$/,
     address: /^.{5,100}$/,
-    provider: /^[A-Za-z ]{2,30}$/,
+    provider: /^(Dr\.?|Mr\.?|Mrs\.?|Ms\.?)?\s?[A-Za-z ]{2,30}$/i,
+
   };
 
   const handleValidation = (name, value) => {
@@ -57,38 +64,43 @@ export default function ProfileInformation() {
     }));
   };
 
-  const handleSave = () => {
+    const handleSave = () => {
     const validationErrors = {};
 
     Object.keys(formData).forEach((key) => {
-      const error = handleValidation(key, formData[key]);
-      if (error) validationErrors[key] = error;
+        const error = handleValidation(key, formData[key]);
+        if (error) validationErrors[key] = error;
     });
 
     if (Object.keys(validationErrors).length === 0) {
-      setEditMode(false);
-      setToast({
-        show:true,
-        message:"Profile updated successfully",
-        type:"success"
-      })
+        setEditMode(false);
+        setToast({
+        show: true,
+        message: "Profile updated successfully",
+        type: "success",
+        });
 
-    setTimeout(() => {
-    setToast({ show: false, message: "", type: "" });
-    }, 3000);
+        setTimeout(() => {
+        setToast({ show: false, message: "", type: "" });
+        }, 3000);
+
     } else {
-      setErrors(validationErrors);
-      setToast({
-        show:true,
-        message:validationErrors,
-        type:"error"
-      });
+        const errorText = Object.values(validationErrors).join(", "); // <-- FIX
 
-      setTimeout(() => {
-      setToast({ show: false, message: "", type: "" });
-    }, 3000);
+        setErrors(validationErrors);
+
+        setToast({
+        show: true,
+        message: errorText,    // <-- now STRING, not object
+        type: "error",
+        });
+
+        setTimeout(() => {
+        setToast({ show: false, message: "", type: "" });
+        }, 3000);
     }
-  };
+    };
+
 
   const handleDelete = () => {
     setShowModal(true);
