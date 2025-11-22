@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+/* eslint-disable */
+
+import React from 'react';
+import Approutes from './routes/AppRoutes';
+
+function App(props) {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Approutes {...props} />
     </>
   );
 }
