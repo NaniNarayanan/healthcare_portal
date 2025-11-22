@@ -4,7 +4,6 @@ import ActiveTimeCard from "../components/TimeCard";
 import SleepCard from "../components/SleepCard";
 export default function DashboardHome() {
   const patient = patients[0]; // Simulate logged-in user
-  const progressPercent = Math.round((patient.goals.steps / patient.goals.targetSteps) * 100);
 
   return (
     <div className="space-y-6">
