@@ -2,6 +2,7 @@ import { usePatient } from "../context/PatientContext";
 import StepsCard from "../components/StepCard";
 import ActiveTimeCard from "../components/TimeCard";
 import SleepCard from "../components/SleepCard";
+import BreadCrumbs from "../reusecomponent/BreadCrump";
 import ProviderDashboard from "../components/ProviderDashboard";
 export default function DashboardHome() {
   const { patient } = usePatient();
@@ -13,7 +14,14 @@ export default function DashboardHome() {
          {role === "provider" ? (
            <ProviderDashboard />
          ) : (
-        <div className="space-y-6">
+          <>
+              <BreadCrumbs
+              crumbs={["Dashboard", "Dashboard"]}
+              paths={["/dashboard", "/dashboard"]}
+              selected={(crumb) => console.log("hello", crumb)}
+              />
+
+                      <div className="space-y-6">
           <h1 className="text-2xl font-bold">Welcome, {patient.name}</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -26,8 +34,8 @@ export default function DashboardHome() {
         />
         <SleepCard
           hours={patient.goals.sleep}
-          start={patient.goals.sleepStart}
-          end={patient.goals.sleepEnd}
+          start={patient.goals.sleepInTime}
+          end={patient.goals.sleepOutTime}
         />
       </div>
             {/* Preventive Care Reminder */}
@@ -42,7 +50,9 @@ export default function DashboardHome() {
             <p>{patient.tip}</p>
           </div>
         </div>
-         )};
+          </>
+
+         )}
     </div>
   );
 }

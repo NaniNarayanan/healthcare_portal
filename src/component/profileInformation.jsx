@@ -4,6 +4,7 @@ import Toast from "../reusecomponent/toastMessage";
 import ConfirmModal from "../reusecomponent/confirmPopModal";
 import PatientData from "../data/patients.json"
 import { useParams } from "react-router-dom";
+import BreadCrumbs from "../reusecomponent/BreadCrump";
 
 export default function ProfileInformation() {
   const [editMode, setEditMode] = useState(false);
@@ -26,7 +27,7 @@ export default function ProfileInformation() {
 
   const [formData, setFormData] = useState({});
 
-
+  const requiredFields = ["name", "age", "email", "mobile", "address"]; 
 
   const [errors, setErrors] = useState({});
 
@@ -44,12 +45,24 @@ export default function ProfileInformation() {
 
   };
 
-  const handleValidation = (name, value) => {
-    if (!regexValidators[name].test(value)) {
-      return `Invalid ${name}`;
+    const handleValidation = (name, value) => {
+    // If field is NOT required  allow empty, skip validation
+    if (!requiredFields.includes(name) && value.trim() === "") {
+        return "";
     }
+
+    // Required field check
+    if (requiredFields.includes(name) && value.trim() === "") {
+        return `${name} is required`;
+    }
+
+    // Regex check
+    if (regexValidators[name] && !regexValidators[name].test(value)) {
+        return `Invalid ${name}`;
+    }
+
     return "";
-  };
+    };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -120,17 +133,24 @@ export default function ProfileInformation() {
   }
 
   return (
+    <>
+    <BreadCrumbs
+    crumbs={["Profile", "Profile Information"]}
+    paths={[`/profile/${id}`, `/profile-information/${id}`]}
+    selected={(crumb) => console.log("hello", crumb)}
+    />
+    
     <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-5">
 
-      {/* Header */}
     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
 
-    {/* Title */}
+
     <h1 className="text-xl font-bold text-gray-800">
         Profile Information
     </h1>
 
-    {/* Buttons */}
+
+
     <div className="flex flex-wrap gap-3">
 
         {!editMode && (
@@ -170,7 +190,6 @@ export default function ProfileInformation() {
     </div>
 
 
-      {/* Form Items */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {Object.keys(formData).map((key) => (
           <RegexInput
@@ -180,6 +199,7 @@ export default function ProfileInformation() {
             type={key === "dob" ? "date" : "text"}
             value={formData[key]}
             regex={regexValidators[key]}
+            required={requiredFields.includes(key)}
             error={errors[key]}
             onChange={handleChange}
             disabled={key === "provider" ? true : !editMode}
@@ -189,6 +209,8 @@ export default function ProfileInformation() {
 
       {toast.show && <Toast message={toast.message} type={toast.type}/>}
     </div>
+    </>
+    
   );
   
 }
