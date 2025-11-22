@@ -18,6 +18,7 @@ const Register = () => {
       affiliation: "",
       experience: "",
       document: null,
+      consent: false
     },
 
     validationSchema: Yup.object({
@@ -54,11 +55,32 @@ const Register = () => {
           schema.required("Years of experience is required").min(1, "Enter valid years"),
         otherwise: (schema) => schema.notRequired(),
       }),
+      consent: Yup.boolean()
+        .oneOf([true], "You must agree to data usage")
+        .required("Consent is required"),
     }),
 
     onSubmit: (values, { resetForm }) => {
       console.log("Form Submitted:", values);
       setIsSubmitted(true);
+      // Get existing users from localStorage
+      const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Check if email already exists
+      const userExists = existingUsers.some(
+        (user) => user.email === values.email
+      );
+
+      if (userExists) {
+        alert("This email is already registered!");
+        return;
+      }
+
+      // Add new user
+      const updatedUsers = [...existingUsers, values];
+
+      // Save back to localStorage
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
       resetForm();
     },
   });
@@ -253,6 +275,17 @@ const Register = () => {
               <p className="text-red-600 text-sm mt-1">{formik.errors.password}</p>
             )}
           </div>
+
+          <div className="mb-4">
+            <label className="flex items-center space-x-2">
+              <input type="checkbox" name="consent" className="form-checkbox h-5 w-5 text-blue-600" 
+              value={formik.values.consent}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}/>
+              <span>I agree to the data usage terms.</span>
+            </label>
+          </div>
+
 
           {/* Submit Button */}
           <button
