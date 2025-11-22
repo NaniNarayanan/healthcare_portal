@@ -15,10 +15,11 @@ const ProviderDashboard = () => {
     setPatients(assignedPatients);
   }, [loggedInProviderUsername]);
 
-  const openModal = (patient) => {
+  const handleOpenModal = React.useCallback((patient) => {
     setSelectedPatient(patient);
     setIsModalOpen(true);
-  };
+  }, []);
+
 
   const closeModal = () => {
     setSelectedPatient(null);
@@ -43,7 +44,7 @@ const ProviderDashboard = () => {
               <tr
                 key={patient.id}
                 className="border-b hover:bg-gray-100 cursor-pointer"
-                onClick={() => openModal(patient)}
+                onClick={() => handleOpenModal(patient)}
               >
                 <td className="p-3">{patient.name}</td>
                 <td className="p-3">{patient.age}</td>

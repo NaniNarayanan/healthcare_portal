@@ -6,30 +6,36 @@ import ActiveTimeCard from "../components/TimeCard";
 import SleepCard from "../components/SleepCard";
 export default function DashboardHome() {
   const patient = patients[0]; // Simulate logged-in user
-
+  const role = "patient"; //patient or provider
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Welcome, {patient.name}</h1>
+    <div>
+         {role === "provider" ? (
+           <ProviderDashboard />
+         ) : (
+        <div className="space-y-6">
+          <h1 className="text-2xl font-bold">Welcome, {patient.name}</h1>
 
-      {/* Wellness Goals */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-       <StepsCard steps={patient.goals.steps} goal={patient.goals.targetSteps} />
-    <ActiveTimeCard mins={patient.goals.time} target={patient.goals.activeTime} kcal={patient.goals.calories} dist={patient.goals.distance} />
-     <SleepCard start={patient.goals.sleepStart} end={patient.goals.sleepEnd} />
+          {/* Wellness Goals */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StepsCard steps={patient.goals.steps} goal={patient.goals.targetSteps} />
+        <ActiveTimeCard mins={patient.goals.time} target={patient.goals.activeTime} kcal={patient.goals.calories} dist={patient.goals.distance} />
+        <SleepCard start={patient.goals.sleepStart} end={patient.goals.sleepEnd} />
 
-      </div>
+          </div>
 
-      {/* Preventive Care Reminder */}
-      <div className="bg-white p-4 rounded shadow">
-        <h2 className="font-semibold mb-2">Preventive Care Reminder</h2>
-        <p>Upcoming: {patient.reminder}</p>
-      </div>
+          {/* Preventive Care Reminder */}
+          <div className="bg-white p-4 rounded shadow">
+            <h2 className="font-semibold mb-2">Preventive Care Reminder</h2>
+            <p>Upcoming: {patient.reminder}</p>
+          </div>
 
-      {/* Health Tip */}
-      <div className="bg-white p-4 rounded shadow">
-        <h2 className="font-semibold mb-2">Health Tip of the Day</h2>
-        <p>{patient.tip}</p>
-      </div>
+          {/* Health Tip */}
+          <div className="bg-white p-4 rounded shadow">
+            <h2 className="font-semibold mb-2">Health Tip of the Day</h2>
+            <p>{patient.tip}</p>
+          </div>
+        </div>
+         )};
     </div>
   );
 }
