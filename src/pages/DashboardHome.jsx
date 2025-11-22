@@ -7,7 +7,7 @@ export default function DashboardHome() {
   const { patient } = usePatient();
 
   // const patient = patients[0]; // Simulate logged-in user
-  const role = "provider"; //patient or provider
+  const role = "user"; //patient or provider
   return (
     <div>
          {role === "provider" ? (
