@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegexInput from "../reusecomponent/regexInput";
 import Toast from "../reusecomponent/toastMessage";
 import ConfirmModal from "../reusecomponent/confirmPopModal";
+import PatientData from "../data/patients.json"
 
 export default function ProfileInformation() {
   const [editMode, setEditMode] = useState(false);
@@ -17,7 +18,8 @@ export default function ProfileInformation() {
     weight: "65",
     email: "narayanan@example.com",
     mobile: "9876543210",
-    address: "Chennai, India"
+    address: "Chennai, India",
+    provider: "Raja M"
   });
 
   const [errors, setErrors] = useState({});
@@ -31,7 +33,8 @@ export default function ProfileInformation() {
     weight: /^[0-9]{1,3}(\.[0-9]{1,2})?$/,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     mobile: /^[0-9]{10}$/,
-    address: /^.{5,100}$/
+    address: /^.{5,100}$/,
+    provider: /^[A-Za-z ]{2,30}$/,
   };
 
   const handleValidation = (name, value) => {
@@ -108,44 +111,52 @@ export default function ProfileInformation() {
     <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-5">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-bold text-gray-800">Profile Information</h1>
+    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
 
-        <div className="space-x-3">
-          {!editMode && (
-            <button
-              onClick={() => setEditMode(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Edit
-            </button>
-          )}
+    {/* Title */}
+    <h1 className="text-xl font-bold text-gray-800">
+        Profile Information
+    </h1>
 
-          {editMode && (
-            <button
-              onClick={handleSave}
-              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-            >
-              Save
-            </button>
-          )}
+    {/* Buttons */}
+    <div className="flex flex-wrap gap-3">
 
-          <button
-            onClick={handleDelete}
-            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
-          >
-            Delete
-          </button>
+        {!editMode && (
+        <button
+            onClick={() => setEditMode(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-full sm:w-auto"
+        >
+            Edit
+        </button>
+        )}
 
-            <ConfirmModal
-                show={showModal}
-                title="Delete Profile"
-                message="Are you sure you want to delete this profile?"
-                onConfirm={confirmDelete}
-                onCancel={() => setShowModal(false)}
-            />
-        </div>
-      </div>
+        {editMode && (
+        <button
+            onClick={handleSave}
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 w-full sm:w-auto"
+        >
+            Save
+        </button>
+        )}
+
+        <button
+        onClick={handleDelete}
+        className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 w-full sm:w-auto"
+        >
+        Delete
+        </button>
+
+        <ConfirmModal
+        show={showModal}
+        title="Delete Profile"
+        message="Are you sure you want to delete this profile?"
+        onConfirm={confirmDelete}
+        onCancel={() => setShowModal(false)}
+        />
+
+    </div>
+    </div>
+
 
       {/* Form Items */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -159,7 +170,7 @@ export default function ProfileInformation() {
             regex={regexValidators[key]}
             error={errors[key]}
             onChange={handleChange}
-            disabled={!editMode}
+            disabled={key === "provider" ? true : !editMode}
           />
         ))}
       </div>
