@@ -8,12 +8,13 @@ export default function RegexInput({
   regex,
   error,
   onChange,
-  disabled
+  disabled,
+  required
 }) {
   return (
     <div className="mb-4">
       <label className="block text-sm font-semibold mb-1">
-        {label}
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
 
       <input
