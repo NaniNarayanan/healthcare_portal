@@ -15,10 +15,10 @@ export default function DashboardPanel() {
   };
 
   return (
-    <div className="flex-1 p-8 bg-gray-50">
+    <div className="md:ml-64 p-4 md:p-8 bg-gray-50 min-h-screen">
       <h1 className="text-2xl font-bold mb-4">Welcome, {patient.name}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
         <div className="bg-white p-4 rounded shadow">
           <h2 className="font-semibold mb-2">Steps</h2>
           <p>{patient.goals.steps} / {patient.goals.targetSteps} steps</p>
