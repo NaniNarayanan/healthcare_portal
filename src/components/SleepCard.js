@@ -1,6 +1,31 @@
 import React from "react";
 import Card from "./Cards";
 
+
+function parseTimeToMinutes(t) {
+  if (!t || typeof t !== "string") return null;
+  const m = t.trim().toLowerCase();
+  const re = /^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/;
+  const match = m.match(re);
+  if (!match) return null;
+  let hour = parseInt(match[1], 10);
+  const minute = parseInt(match[2] || "0", 10);
+  const period = match[3]; // am or pm
+  if (hour === 12) hour = 0; // 12am -> 0, 12pm handled below
+  if (period === "pm") hour += 12;
+  return hour * 60 + minute;
+}
+
+// compute difference in hours/minutes, handling overnight spans
+function durationBetween(startStr, endStr) {
+  const start = parseTimeToMinutes(startStr);
+  const end = parseTimeToMinutes(endStr);
+  if (start === null || end === null) return { hours: 0, mins: 0 };
+  const totalMinutes = (end - start + 24 * 60) % (24 * 60);
+  // if same time treat as 24h
+  const minutes = totalMinutes === 0 ? 24 * 60 : totalMinutes;
+  return { hours: Math.floor(minutes / 60), mins: minutes % 60 };
+}
 const SleepBar = ({ segments = ["#49d199", "#ffcd3c", "#f08aa6", "#6aa8ff"] }) => (
   <div className="flex items-center space-x-1">
     {segments.map((c, i) => (
@@ -9,7 +34,10 @@ const SleepBar = ({ segments = ["#49d199", "#ffcd3c", "#f08aa6", "#6aa8ff"] }) =
   </div>
 );
 
-export default function SleepCard({ hours = 6, mins = 30, start = "11:30 pm", end = "06:00 am" }) {
+export default function SleepCard({start, end }) {
+    const computed = durationBetween(start, end);
+const displayHours = computed.hours;
+  const displayMins = computed.mins;
   return (
     <Card
       icon={
@@ -21,7 +49,7 @@ export default function SleepCard({ hours = 6, mins = 30, start = "11:30 pm", en
       subtitle={`${start} - ${end}`}
       right={<SleepBar />}
     >
-      <div className="text-2xl font-semibold text-gray-900">{hours} hrs {mins} mins</div>
+      <div className="text-2xl font-semibold text-gray-900">{displayHours} hrs {displayMins} mins</div>
     </Card>
   );
 }
