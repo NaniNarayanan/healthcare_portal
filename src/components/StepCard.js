@@ -14,8 +14,8 @@ const Sparkline = ({ values = [1, 2, 3, 2, 4, 3, 2] }) => (
   </div>
 );
 
-export default function StepsCard({ steps = 3620, goal = 6000, sparkline }) {
-  const pct = Math.min(100, Math.round((steps / goal) * 100));
+export default function StepsCard(props) {
+  const pct = Math.min(100, Math.round((props.steps / props.goal) * 100));
   return (
     <Card
       icon={
@@ -25,11 +25,11 @@ export default function StepsCard({ steps = 3620, goal = 6000, sparkline }) {
         </svg>
       }
       title="Steps"
-      subtitle={`${steps.toLocaleString()} / ${goal} steps`}
+      subtitle={`${props.steps.toLocaleString()} / ${props.goal} steps`}
       right={
         <div className="text-xs text-gray-400">
          
-          <Sparkline values={sparkline} />
+          <Sparkline values={props.sparkline} />
         </div>
       }
     >

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./Cards";
 
-export default function ActiveTimeCard({ mins = 56, target = 60, kcal = 1712, dist = "1.23km" }) {
+export default function ActiveTimeCard(props) {
   return (
     <Card
       icon={
@@ -10,14 +10,14 @@ export default function ActiveTimeCard({ mins = 56, target = 60, kcal = 1712, di
         </svg>
       }
       title="Active Time"
-      subtitle={`${mins} / ${target} mins`}
+      subtitle={`${props.mins} / ${props.target} mins`}
       right={
         <div className="text-sm text-gray-700">
-          {kcal} Kcal <span className="text-gray-400">|</span> {dist}
+          {props.kcal} Kcal <span className="text-gray-400">|</span> {props.dist}
         </div>
       }
     >
-      <div className="text-2xl font-semibold text-gray-900">{mins}</div>
+      <div className="text-2xl font-semibold text-gray-900">{props.mins}</div>
       <div className="text-sm text-gray-400">minutes</div>
     </Card>
   );
