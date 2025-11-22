@@ -1,3 +1,5 @@
+import ProviderDashboard from "../components/ProviderDashboard";
+
 import patients from "../data/patients.json";
 import StepsCard from "../components/StepCard";
 import ActiveTimeCard from "../components/TimeCard";
@@ -11,9 +13,9 @@ export default function DashboardHome() {
 
       {/* Wellness Goals */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-       <StepsCard steps={3620} goal={6000} />
-    <ActiveTimeCard mins={56} target={60} kcal={1712} dist={"1.23km"} />
-     <SleepCard hours={6} mins={30} start="11:30 pm" end="06:00 am" />
+       <StepsCard steps={patient.goals.steps} goal={patient.goals.targetSteps} />
+    <ActiveTimeCard mins={patient.goals.time} target={patient.goals.activeTime} kcal={patient.goals.calories} dist={patient.goals.distance} />
+     <SleepCard start={patient.goals.sleepStart} end={patient.goals.sleepEnd} />
 
       </div>
 

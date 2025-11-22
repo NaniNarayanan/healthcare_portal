@@ -3,13 +3,14 @@
     "id": 1,
     "name": "David",
     "goals": {
-      "steps": 3620,
+      "steps": 3920,
       "targetSteps": 6000,
-      "activeTime": "56 / 60 mins",
-      "calories": "1712 Kcal",
+      "time": "58",
+      "activeTime": "60",
+      "calories": "1715 ",
       "distance": "1.23 km",
-      "sleep": "6 hr 30 mins",
-      "sleepTime": "11:30 pm – 06:00 am"
+      "sleepStart": "11:30 pm",
+      "sleepEnd": "05:00 am"
     },
     "reminder": "Annual blood test on 23rd Jan 2026",
     "tip": "Stay hydrated! Aim to drink at least 8 glasses of water per day."
