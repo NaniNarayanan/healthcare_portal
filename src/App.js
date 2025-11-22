@@ -3,11 +3,14 @@
 
 import React from 'react';
 import Approutes from './routes/AppRoutes';
+import AuthProvider from './context/AuthContext';
 
 function App(props) {
   return (
     <>
-      <Approutes {...props} />
+      <AuthProvider>
+        <Approutes {...props} />
+      </AuthProvider>
     </>
   );
 }

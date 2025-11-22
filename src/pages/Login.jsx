@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const users = [
     {
@@ -21,8 +22,11 @@ const users = [
 
 export default function Login() {
 
+    const { login } = useContext(AuthContext);
+
     const [data, setFormData] = useState({});
-    const [error, setError] = useState("");
+    const [error, setError] = useState(false);
+    const [message, setMessage] = useState("Email and password cant be empty");
 
     const navigate = useNavigate();
 
@@ -33,11 +37,18 @@ export default function Login() {
 
     const handleSubmit = (e)=> {
         e.preventDefault();
-        const findUsers = users.find((user)=> user.email === data.email && user.password === data.password);
-        if(users.length > 0) {
+        if(!data.email && !data.password) {
+            setError(true);
+            return;
+        } else {
+            setError(false);            
+        }
+        const findUsers = login(data);
+        console.log("++++++++   ", findUsers);
+        if(findUsers) {
             navigate("/dashboard", { replace: true });  
         }
-        console.log(data, findUsers);
+        
     }
 
     return (
@@ -72,7 +83,7 @@ export default function Login() {
                         name="password"
                         value={data.password}
                     />
-
+                    <p>{error && message}</p>
                     {/* Login Button */}
                     <button
                         type="submit"
