@@ -1,7 +1,11 @@
 import ProviderDashboard from "../components/ProviderDashboard";
 
+import patients from "../data/patients.json";
+import StepsCard from "../components/StepCard";
+import ActiveTimeCard from "../components/TimeCard";
+import SleepCard from "../components/SleepCard";
 export default function DashboardHome() {
-  const role = "provider";
+  const role = "provider"; //patient or provider
 
    const patient = {
     name: "David",
@@ -19,49 +23,34 @@ export default function DashboardHome() {
   };
 
   return (
-    <div>
-     <div>
-      {role === "provider" ? (
-        <ProviderDashboard />
-      ) : (
-             
-        <div className="md:ml-64 p-4 md:p-8 bg-gray-50 min-h-screen">
-          <h1 className="text-2xl font-bold mb-4">Welcome, {patient.name}</h1>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-            <div className="bg-white p-4 rounded shadow">
-              <h2 className="font-semibold mb-2">Steps</h2>
-              <p>{patient.goals.steps} / {patient.goals.targetSteps} steps</p>
-              <p>{Math.round((patient.goals.steps / patient.goals.targetSteps) * 100)}%</p>
-            </div>
-
-            <div className="bg-white p-4 rounded shadow">
-              <h2 className="font-semibold mb-2">Active Time</h2>
-              <p>{patient.goals.activeTime}</p>
-              <p>{patient.goals.calories} | {patient.goals.distance}</p>
-            </div>
-
-            <div className="bg-white p-4 rounded shadow">
-              <h2 className="font-semibold mb-2">Sleep</h2>
-              <p>{patient.goals.sleep}</p>
-              <p>{patient.goals.sleepTime}</p>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded shadow mb-4">
-            <h2 className="font-semibold mb-2">Preventive Care Reminder</h2>
-            <p>Upcoming: {patient.reminder}</p>
-          </div>
-
-          <div className="bg-white p-4 rounded shadow">
-            <h2 className="font-semibold mb-2">Health Tip of the Day</h2>
-            <p>{patient.tip}</p>
-          </div>
-        </div>
-
-      )}
-    </div>
-    
-    </div>
+   <div>
+         {role === "provider" ? (
+           <ProviderDashboard />
+         ) : (
+       <div className="space-y-6">
+         <h1 className="text-2xl font-bold">Welcome, {patient.name}</h1>
+   
+         {/* Wellness Goals */}
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StepsCard steps={3620} goal={6000} />
+       <ActiveTimeCard mins={56} target={60} kcal={1712} dist={"1.23km"} />
+        <SleepCard hours={6} mins={30} start="11:30 pm" end="06:00 am" />
+   
+         </div>
+   
+         {/* Preventive Care Reminder */}
+         <div className="bg-white p-4 rounded shadow">
+           <h2 className="font-semibold mb-2">Preventive Care Reminder</h2>
+           <p>Upcoming: {patient.reminder}</p>
+         </div>
+   
+         {/* Health Tip */}
+         <div className="bg-white p-4 rounded shadow">
+           <h2 className="font-semibold mb-2">Health Tip of the Day</h2>
+           <p>{patient.tip}</p>
+         </div>
+       </div> 
+       )}
+       </div>
   );
 }
