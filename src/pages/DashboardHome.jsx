@@ -6,7 +6,7 @@ import ActiveTimeCard from "../components/TimeCard";
 import SleepCard from "../components/SleepCard";
 export default function DashboardHome() {
   const patient = patients[0]; // Simulate logged-in user
-  const role = "patient"; //patient or provider
+  const role = "provider"; //patient or provider
   return (
     <div>
          {role === "provider" ? (

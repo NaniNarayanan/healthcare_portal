@@ -24,7 +24,13 @@
       "sleepEnd": "05:00 am"
     },
     "reminder": "Annual blood test on 23rd Jan 2026",
-    "tip": "Stay hydrated! Aim to drink at least 8 glasses of water per day."
+    "tip": "Stay hydrated! Aim to drink at least 8 glasses of water per day.",
+    "compliance": "Goal Met",
+      "username": "provider1",
+      "recommendedGoals": [
+        { "name": "Blood Pressure Check", "status": "Goal Met" },
+        { "name": "Annual Physical Exam", "status": "Missed Preventive Checkup" }
+      ]
   },
   {
     "id": 2,
@@ -51,7 +57,13 @@
       "sleepOutTime": "06:00 am"
     },
     "reminder": "Dental checkup on 10th Feb 2026",
-    "tip": "Include more fruits and vegetables in your diet."
+    "tip": "Include more fruits and vegetables in your diet.",
+     "compliance": "Missed Preventive Checkup",
+      "username": "provider1",
+      "recommendedGoals": [
+        { "name": "Cholesterol Test", "status": "Missed Preventive Checkup" },
+        { "name": "Flu Vaccination", "status": "Goal Met" }
+      ]
   },
   {
     "id": 3,
@@ -78,7 +90,13 @@
       "sleepOutTime": "07:45 am"
     },
     "reminder": "Full body checkup on 5th March 2026",
-    "tip": "Yoga for 20 minutes can boost your mental clarity."
+    "tip": "Yoga for 20 minutes can boost your mental clarity.",
+    "compliance": "Goal Met",
+    "username": "provider1",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 4,
@@ -105,7 +123,13 @@
       "sleepOutTime": "08:30 am"
     },
     "reminder": "Eye checkup on 20th Feb 2026",
-    "tip": "Reduce screen time before sleep for better rest."
+    "tip": "Reduce screen time before sleep for better rest.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 5,
@@ -132,7 +156,13 @@
       "sleepOutTime": "07:20 am"
     },
     "reminder": "Thyroid test on 1st April 2026",
-    "tip": "Practice mindful breathing for stress relief."
+    "tip": "Practice mindful breathing for stress relief.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 6,
@@ -159,7 +189,13 @@
       "sleepOutTime": "06:30 am"
     },
     "reminder": "Cardio profile on 11th March 2026",
-    "tip": "Try taking a 10-minute walk after meals."
+    "tip": "Try taking a 10-minute walk after meals.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 7,
@@ -186,7 +222,13 @@
       "sleepOutTime": "06:25 am"
     },
     "reminder": "Vitamin D test on 14th May 2026",
-    "tip": "Stretching for 5 minutes improves posture."
+    "tip": "Stretching for 5 minutes improves posture.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 8,
@@ -213,7 +255,13 @@
       "sleepOutTime": "06:10 am"
     },
     "reminder": "Cholesterol test on 18th Feb 2026",
-    "tip": "Drink water first thing in the morning."
+    "tip": "Drink water first thing in the morning.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 9,
@@ -240,7 +288,13 @@
       "sleepOutTime": "09:00 am"
     },
     "reminder": "Skin screening on 2nd June 2026",
-    "tip": "Start your day with 5 minutes of meditation."
+    "tip": "Start your day with 5 minutes of meditation.",
+    "compliance": "Missed Preventive Checkup",
+    "username": "provider1",
+    "recommendedGoals": [
+      { "name": "Flu Vaccination", "status": "Missed Preventive Checkup" },
+      { "name": "Cholesterol Test", "status": "Goal Met" }
+    ]
   },
   {
     "id": 10,
@@ -267,6 +321,12 @@
       "sleepOutTime": "05:30 am"
     },
     "reminder": "Blood pressure check on 12th March 2026",
-    "tip": "Limit sugar intake for better energy levels."
+    "tip": "Limit sugar intake for better energy levels.",
+    "compliance": "Goal Met",
+    "username": "provider2",
+    "recommendedGoals": [
+      { "name": "Annual Physical Exam", "status": "Goal Met" },
+      { "name": "Blood Sugar Test", "status": "Goal Met" }
+    ]
   }
 ]
